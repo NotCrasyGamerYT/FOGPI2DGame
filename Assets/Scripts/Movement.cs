@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
     private Vector2 moveInput;
     private Rigidbody2D rb;
     private PlayerControls controls;
+    public Animator animator;
 
     [SerializeField] private float moveSpeed = 5f;
 
