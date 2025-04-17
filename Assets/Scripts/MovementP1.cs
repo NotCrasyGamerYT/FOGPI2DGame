@@ -11,9 +11,6 @@ public class MovementP1 : MonoBehaviour
 
     public SpriteRenderer playerSpriteRenderer;
 
-    bool jump = false;
-
-
     [SerializeField] private float moveSpeed = 0;
 
     private void Awake()
@@ -31,13 +28,18 @@ public class MovementP1 : MonoBehaviour
     private void Update()
     {
         FlipSprite();
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetBool("isAttack3", true);
+        }
+
     }
 
     private void FixedUpdate()
     {
         rb.linearVelocity = moveInput * moveSpeed;
         animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocityX));
-
+        animator.SetBool("isWalking", true);
     }
 
 
@@ -65,5 +67,11 @@ public class MovementP1 : MonoBehaviour
             playerSpriteRenderer.flipX = true;
         }
 
+    }
+
+    public void endAttack()
+    {
+        animator.SetBool("isAttack3", false);
+        animator.SetBool("isAttacking", false);
     }
 }

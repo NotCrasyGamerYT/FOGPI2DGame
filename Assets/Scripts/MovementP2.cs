@@ -8,9 +8,11 @@ public class MovementP2 : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerControls controls;
     public Animator animator;
+    public GameObject attackPoint;
+    public float radius;
+    public LayerMask enemies;
 
     public SpriteRenderer playerSpriteRenderer;
-
 
     [SerializeField] private float moveSpeed = 0;
 
@@ -29,13 +31,20 @@ public class MovementP2 : MonoBehaviour
     private void Update()
     {
         FlipSprite();
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetBool("isAttack3", true);
+        }
+
     }
 
     private void FixedUpdate()
     {
         rb.linearVelocity = moveInput * moveSpeed;
         animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocityX));
+        animator.SetBool("isWalking", true);
     }
+
 
     private void OnEnable()
     {
@@ -61,5 +70,25 @@ public class MovementP2 : MonoBehaviour
             playerSpriteRenderer.flipX = true;
         }
 
+    }
+
+    public void attack()
+    {
+        Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.transform.position, radius, enemies);
+        foreach (Collider2D enemyGameObject in enemy)
+        {
+            Debug.Log("hit");
+        }
+    }
+
+    public void endAttack()
+    {
+        animator.SetBool("isAttack3", false);
+        animator.SetBool("isAttack", false);
+    }
+
+    private void onDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(attackPoint.transform.position, radius);
     }
 }

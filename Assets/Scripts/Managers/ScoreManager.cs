@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance { get; private set;}
     public float score {get; private set;}
     public float multiplier { get; private set;}
+    public UnityEvent<ScoreInfo> updateScore;
+
 
     void awake()
     {
@@ -31,10 +34,12 @@ public class ScoreManager : MonoBehaviour
         
     }
 
-    public void AddPoint()
+    public void AddPoint(float _amount, Vector3? _location = null)
     {
-
+        updateScore.Invoke(new ScoreInfo(_amount, multiplier, score, _location));
+        score += _amount;
     }
+ 
 
 }
 
