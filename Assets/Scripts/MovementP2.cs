@@ -34,6 +34,7 @@ public class MovementP2 : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetBool("isAttack3", true);
+            attack();
         }
 
     }
@@ -61,14 +62,11 @@ public class MovementP2 : MonoBehaviour
 
     private void FlipSprite()
     {
-        if (moveInput.x > 0) // Moving right
-        {
-            playerSpriteRenderer.flipX = false;
-        }
-        else if (moveInput.x < 0) // Moving left
-        {
-            playerSpriteRenderer.flipX = true;
-        }
+        if (moveInput.x > 0)
+            transform.localScale = new Vector3(1.9875f, 2.55f, 1);
+        else if (moveInput.x < 0)
+            transform.localScale = new Vector3(-1.9875f, 2.55f, 1);
+
 
     }
 
@@ -77,7 +75,8 @@ public class MovementP2 : MonoBehaviour
         Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.transform.position, radius, enemies);
         foreach (Collider2D enemyGameObject in enemy)
         {
-            Debug.Log("hit");
+            Debug.Log("p2 hit p1");
+            enemyGameObject.GetComponent<P1Health>().health -= 10;
         }
     }
 
@@ -87,7 +86,7 @@ public class MovementP2 : MonoBehaviour
         animator.SetBool("isAttack", false);
     }
 
-    private void onDrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attackPoint.transform.position, radius);
     }

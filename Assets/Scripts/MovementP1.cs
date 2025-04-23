@@ -8,6 +8,9 @@ public class MovementP1 : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerControls controls;
     public Animator animator;
+    public GameObject attackPoint;
+    public float radius;
+    public LayerMask enemies;
 
     public SpriteRenderer playerSpriteRenderer;
 
@@ -31,6 +34,7 @@ public class MovementP1 : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetBool("isAttack3", true);
+            attack();
         }
 
     }
@@ -58,20 +62,32 @@ public class MovementP1 : MonoBehaviour
 
     private void FlipSprite()
     {
-        if (moveInput.x > 0) // Moving right
-        {
-            playerSpriteRenderer.flipX = false;
-        }
-        else if (moveInput.x < 0) // Moving left
-        {
-            playerSpriteRenderer.flipX = true;
-        }
+        if (moveInput.x > 0)
+            transform.localScale = new Vector3(1.9875f, 2.55f, 1);
+        else if (moveInput.x < 0)
+            transform.localScale = new Vector3(-1.9875f, 2.55f, 1);
 
+    }
+
+    public void attack()
+    {
+        Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.transform.position, radius, enemies);
+        foreach (Collider2D enemyGameObject in enemy)
+        {
+            Debug.Log("p1 hit p2");
+            enemyGameObject.GetComponent<P2Health>().health -= 10;
+        }
     }
 
     public void endAttack()
     {
         animator.SetBool("isAttack3", false);
         animator.SetBool("isAttacking", false);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(attackPoint.transform.position, radius);
+
     }
 }
