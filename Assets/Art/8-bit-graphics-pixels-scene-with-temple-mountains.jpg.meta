@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      8-bit-graphics-pixels-scene-with-temple-mountains_0: 4236337954377799183
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

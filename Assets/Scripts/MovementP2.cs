@@ -75,7 +75,6 @@ public class MovementP2 : MonoBehaviour
         Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.transform.position, radius, enemies);
         foreach (Collider2D enemyGameObject in enemy)
         {
-            Debug.Log("p2 hit p1");
             enemyGameObject.GetComponent<P1Health>().health -= 10;
         }
     }

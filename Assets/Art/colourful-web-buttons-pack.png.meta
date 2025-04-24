@@ -259,7 +259,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      colourful-web-buttons-pack_0: -1335272556136957061
+      colourful-web-buttons-pack_1: 464493291464419661
+      colourful-web-buttons-pack_2: -6911695891249104221
+      colourful-web-buttons-pack_3: -7978330405488373754
+      colourful-web-buttons-pack_4: -6682230239877600511
+      colourful-web-buttons-pack_5: 4600136244848050935
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
