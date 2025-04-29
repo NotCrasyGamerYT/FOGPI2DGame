@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aac99d2169f147d4a8e87037233920a0, type: 3}
+  m_Name: NewCharacter 1
+  m_EditorClassIdentifier: 
+  characterName: SamCom
+  portrait: {fileID: 4723107735738678597, guid: 7f4859a8dc2ad624a93f339701806f41, type: 3}
+  prefab: {fileID: 7059213927252790118, guid: 77c026266e67ecf48a7b3c2f0d0dd048, type: 3}
