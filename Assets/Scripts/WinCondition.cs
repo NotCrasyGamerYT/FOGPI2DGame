@@ -1,23 +1,40 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class WinCondition : MonoBehaviour
 {
-    public P1Health P1Health;
-    public P2Health P2Health;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Tooltip("Drag the P1Health component here")]
+    public P1Health p1Health;
+    [Tooltip("Drag the P2Health component here")]
+    public P2Health p2Health;
 
-    // Update is called once per frame
+    private bool gameEnded = false;
+
     void Update()
     {
-        if (P1Health = null)
+        if (gameEnded) return;
+
+        if (p1Health.health <= 0f)
         {
-            Debug.Log("P2 Wins");
+            gameEnded = true;
+            OnPlayer2Win();
         }
+        else if (p2Health.health <= 0f)
+        {
+            gameEnded = true;
+            OnPlayer1Win();
+        }
+    }
+
+    private void OnPlayer1Win()
+    {
+        Debug.Log("🎉 Player 1 Wins! 🎉");
+        // TODO: trigger victory UI, animations, scene load, etc.
+    }
+
+    private void OnPlayer2Win()
+    {
+        Debug.Log("🎉 Player 2 Wins! 🎉");
+        // TODO: trigger victory UI, animations, scene load, etc.
     }
 }
