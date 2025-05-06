@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinCondition : MonoBehaviour
 {
@@ -8,17 +8,23 @@ public class WinCondition : MonoBehaviour
     [Tooltip("Drag the P2Health component here")]
     public P2Health p2Health;
 
+    public GameObject gameUIp1;
+    public GameObject gameUIp2;
+
+    // flag so we only announce the win once
     private bool gameEnded = false;
 
     void Update()
     {
         if (gameEnded) return;
 
+        // Player 1 died → Player 2 wins
         if (p1Health.health <= 0f)
         {
             gameEnded = true;
             OnPlayer2Win();
         }
+        // Player 2 died → Player 1 wins
         else if (p2Health.health <= 0f)
         {
             gameEnded = true;
@@ -28,13 +34,38 @@ public class WinCondition : MonoBehaviour
 
     private void OnPlayer1Win()
     {
-        Debug.Log("🎉 Player 1 Wins! 🎉");
-        // TODO: trigger victory UI, animations, scene load, etc.
+        gameUIp1.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnPlayer2Win()
     {
-        Debug.Log("🎉 Player 2 Wins! 🎉");
-        // TODO: trigger victory UI, animations, scene load, etc.
+        gameUIp2.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void RestartLevel()
+    {
+        Resume();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitToMainMenu()
+    {
+        SceneManager.LoadScene("MainmenuScene");
+    }
+
+    public void Resume()
+    {
+        gameUIp1.SetActive(false);
+        gameUIp1.SetActive(false);
+        Time.timeScale = 1f;
+        // Optionally: re-lock cursor
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

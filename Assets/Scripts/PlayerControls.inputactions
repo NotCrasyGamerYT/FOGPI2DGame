@@ -114,6 +114,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "748df9db-ba13-4785-9d74-ad305b9c35e0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -153,7 +162,7 @@
                 {
                     "name": "left",
                     "id": "21dc0124-f54d-4d01-83df-9c03e8eecd62",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -164,7 +173,7 @@
                 {
                     "name": "right",
                     "id": "c0eee0bd-2768-494c-9bb6-bc772ff8fddb",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -175,11 +184,61 @@
                 {
                     "name": "",
                     "id": "3e2fea68-2efd-4ee2-822c-0fb6ec72cb03",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04eb44f1-c5d1-4d0e-8e17-5dcade974e43",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "564818e3-a961-4b36-ae8a-047b9815cc86",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "01e842de-4028-4b0a-8b05-bd45bfb9f94d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "791cfdf7-0d96-49bc-a0f9-aa41cb1b79f6",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f839bde-3855-4ca2-b130-9504c926d0e4",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
