@@ -21,6 +21,10 @@ public class MovementP2 : MonoBehaviour
     [Header("References")]
     public Animator animator;
 
+    [Header("Attack Cooldown")]
+    [SerializeField] private float attackCooldown = 1f;    // seconds between attacks
+    private float lastAttackTime = -Mathf.Infinity;
+
     private Rigidbody2D rb;
     private PlayerControls controls;
 
@@ -67,8 +71,13 @@ public class MovementP2 : MonoBehaviour
         // Attack binding
         controls.MovementP2.Attack.performed += ctx =>
         {
-            animator.SetBool("isAttack3", true);
-            Attack();
+            if (Time.time >= lastAttackTime + attackCooldown)
+            {
+                
+                Attack();
+                lastAttackTime = Time.time;
+            }
+
         };
 
     }
@@ -96,6 +105,7 @@ public class MovementP2 : MonoBehaviour
             if (health != null)
                 health.health -= 10;
         }
+        animator.SetBool("isAttack3", true);
     }
 
     public void EndAttack()

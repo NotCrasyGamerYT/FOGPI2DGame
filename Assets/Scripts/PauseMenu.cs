@@ -10,6 +10,9 @@ public class PauseMenu : MonoBehaviour
     private bool isPaused = false;
     private PlayerControls controls;
 
+    public MovementP1 movementP1;
+    public MovementP2 movementP2;
+
     private void Awake()
     {
         controls = new PlayerControls();
@@ -21,6 +24,11 @@ public class PauseMenu : MonoBehaviour
     private void OnDisable()
     {
         controls.Disable();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
     }
 
     private void TogglePause()
@@ -37,6 +45,10 @@ public class PauseMenu : MonoBehaviour
         // Optionally: unlock cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        movementP1.enabled = false;
+        movementP2.enabled = false;
+
     }
 
     public void Resume()
@@ -47,6 +59,10 @@ public class PauseMenu : MonoBehaviour
         // Optionally: re-lock cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        movementP1.enabled = true;
+        movementP2.enabled = true;
+
     }
 
     public void RestartLevel()

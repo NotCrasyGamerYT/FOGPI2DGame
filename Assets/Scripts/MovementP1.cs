@@ -21,6 +21,10 @@ public class MovementP1 : MonoBehaviour
     [Header("References")]
     public Animator animator;
 
+    [Header("Attack Cooldown")]
+    [SerializeField] private float attackCooldown = 1f;    // seconds between attacks
+    private float lastAttackTime = -Mathf.Infinity;
+
     private Rigidbody2D rb;
     private PlayerControls controls;
 
@@ -62,10 +66,11 @@ public class MovementP1 : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
         animator.SetBool("isWalking", Mathf.Abs(rb.linearVelocity.x) > 0.1f);
 
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) && Time.time >= lastAttackTime + attackCooldown)
         {
             animator.SetBool("isAttack3", true);
             Attack();
+            lastAttackTime = Time.time;
         }
     }
 

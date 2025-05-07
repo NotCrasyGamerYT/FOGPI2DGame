@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,12 +11,15 @@ public class P1Health : MonoBehaviour
     private Animator animator;
     public Image healthBar;
 
-    // assign this in the inspector
     public MovementP1 movementP1;
+
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private float flashDuration = 0.1f;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         maxHealth = 100;
         health = maxHealth;
         currentHealth = health;
@@ -30,6 +34,9 @@ public class P1Health : MonoBehaviour
             currentHealth = health;
             animator.SetTrigger("P1Dmg");
             animator.SetBool("isAttack3", false);
+
+            StopAllCoroutines();        
+            StartCoroutine(FlashRed());
         }
 
         if (health <= 0f)
@@ -47,5 +54,12 @@ public class P1Health : MonoBehaviour
 
         if (health > maxHealth)
             health = maxHealth;
+    }
+
+    private IEnumerator FlashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = Color.white;
     }
 }
